@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="helloWorldService" class="com.zpf.service.HelloWorldServiceImpl" scope="prototype">
+        <property name="text" value="Hello World"></property>
+    </bean>
+
+    <bean id="wrapService" class="com.zpf.service.WrapService">
+        <property name="helloWorldService" ref="helloWorldService"></property>
+    </bean>
+
+</beans>
