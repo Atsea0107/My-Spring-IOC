@@ -4,6 +4,14 @@ package com.zpf.springframework.entity;
 /**
  * @author zpf
  * @create 2021-05-09 17:54
+ * BeanDefinition：就是bean的具体信息
+ * 一个实例应该具有的信息：
+ * 0、对外提供该bean
+ * 1、Class对象
+ * 2、类命
+ * 3、是否是单例
+ * 4、属性List
+ * bean一般为单例，但可能不是，所以并没有私有化构造器
  */
 public class BeanDefinition {
     private Object bean;
@@ -11,6 +19,7 @@ public class BeanDefinition {
     private String beanClassName;
     private Boolean singleton;
     private PropertyValueList propertyValueList;
+
 
     public Object getBean() {
         return bean;

@@ -6,7 +6,8 @@ package com.zpf.service;
  */
 public class WrapService {
     private HelloWorldService helloWorldService;
-    public void say(){
+
+    public void say() {
         helloWorldService.saySomething();
     }
 }

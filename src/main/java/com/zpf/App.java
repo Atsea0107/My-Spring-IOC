@@ -11,7 +11,9 @@ import com.zpf.springframework.context.ClassPathXmlApplicationContext;
 public class App 
 {
     public static void main( String[] args ) throws Exception {
+        // xml配置文件读取
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
+        // 获取bean实例 beanName为xml中bean的id（严格相同）
         WrapService wrapService = (WrapService) applicationContext.getBean("wrapService");
         wrapService.say();
         // 单例的验证

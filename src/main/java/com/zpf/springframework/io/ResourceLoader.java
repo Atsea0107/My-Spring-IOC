@@ -9,6 +9,7 @@ import java.net.URL;
  */
 public class ResourceLoader {
     public Resource getResource(String location){
+        // 通过类加载器加载资源，返回URL对象
         URL url = this.getClass().getClassLoader().getResource(location);
         return new UrlResource(url);
     }

@@ -15,9 +15,11 @@ import java.util.Properties;
 public class AutowiredCapableBeanFactory extends AbstractBeanFactory{
     @Override
     protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception{
+        // 单例，且已经创建好了，直接返回
         if(beanDefinition.isSingleton() && beanDefinition.getBean() != null){
             return beanDefinition.getBean();
         }
+        // 根据Class对象 创建一个实例
         Object bean = beanDefinition.getBeanClass().newInstance();
         if(beanDefinition.isSingleton()){
             beanDefinition.setBean(bean);
@@ -33,7 +35,9 @@ public class AutowiredCapableBeanFactory extends AbstractBeanFactory{
      * @throws Exception
      */
     private void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception{
+        // 获取属性List，根据反射对各个成员变量初始化
         for(PropertyValue propertyValue : beanDefinition.getPropertyValueList().getPropertyValueList()){
+            // getDeclaredField() 类本身的成员属性，不包括父类，但是包括private protected
             Field field = bean.getClass().getDeclaredField(propertyValue.getName());
             Object value = propertyValue.getValue();
             // BeanReference 引用类型

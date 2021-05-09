@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-
+    <!--类的内部属性 property， 属性名text 属性值""-->
     <bean id="helloWorldService" class="com.zpf.service.HelloWorldServiceImpl" scope="prototype">
-        <property name="text" value="Hello World"></property>
+        <property name="text" value="Hello World"/>
     </bean>
-
+    <!--类的内部属性 property-->
     <bean id="wrapService" class="com.zpf.service.WrapService">
-        <property name="helloWorldService" ref="helloWorldService"></property>
+        <property name="helloWorldService" ref="helloWorldService"/>
     </bean>
 
 </beans>

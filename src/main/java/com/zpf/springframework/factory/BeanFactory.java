@@ -7,6 +7,9 @@ import com.zpf.springframework.entity.BeanDefinition;
  * @create 2021-05-09 16:53
  * 实例工厂
  * Bean接口工厂
+ * 作为Bean的接口工厂，
+ * 1、要提供给外界获取Bean的功能
+ * 2、而且还可以向工厂中注册Bean
  */
 public interface BeanFactory {
     // 获取bean的方法

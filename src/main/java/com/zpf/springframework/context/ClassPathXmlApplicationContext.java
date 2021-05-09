@@ -13,6 +13,7 @@ import java.util.Map;
  * @create 2021-05-09 18:13
  */
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
+    // 并发安全
     private final Object startupShutdownMonitor = new Object();
     private String location;
 
