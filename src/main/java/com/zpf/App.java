@@ -14,6 +14,7 @@ public class App
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
         WrapService wrapService = (WrapService) applicationContext.getBean("wrapService");
         wrapService.say();
+        // 单例的验证
         HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
         HelloWorldService helloWorldService2 = (HelloWorldService) applicationContext.getBean("helloWorldService");
         System.out.println("prototype验证：" + (helloWorldService == helloWorldService2));
