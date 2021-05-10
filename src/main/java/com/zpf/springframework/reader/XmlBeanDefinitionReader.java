@@ -105,8 +105,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         String packageDirName = packageName.replace('.', '/');
         Enumeration<URL> dirs;
         try {
-            dirs = Thread.currentThread().getContextClassLoader().getResources(
-                    packageDirName);
+            dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
             // 循环迭代下去
             while (dirs.hasMoreElements()) {
                 // 获取下一个元素
@@ -126,8 +125,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                     JarFile jar;
                     try {
                         // 获取jar
-                        jar = ((JarURLConnection) url.openConnection())
-                                .getJarFile();
+                        jar = ((JarURLConnection) url.openConnection()).getJarFile();
                         // 从此jar包 得到一个枚举类
                         Enumeration<JarEntry> entries = jar.entries();
                         // 同样的进行循环迭代
@@ -146,23 +144,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                                 // 如果以"/"结尾 是一个包
                                 if (idx != -1) {
                                     // 获取包名 把"/"替换成"."
-                                    packageName = name.substring(0, idx)
-                                            .replace('/', '.');
+                                    packageName = name.substring(0, idx).replace('/', '.');
                                 }
                                 // 如果可以迭代下去 并且是一个包
                                 if ((idx != -1) || recursive) {
                                     // 如果是一个.class文件 而且不是目录
-                                    if (name.endsWith(".class")
-                                            && !entry.isDirectory()) {
+                                    if (name.endsWith(".class")&& !entry.isDirectory()) {
                                         // 去掉后面的".class" 获取真正的类名
-                                        String className = name.substring(
-                                                packageName.length() + 1, name
-                                                        .length() - 6);
+                                        String className = name.substring(packageName.length() + 1, name.length() - 6);
                                         try {
                                             // 添加到classes
-                                            classes.add(Class
-                                                    .forName(packageName + '.'
-                                                            + className));
+                                            classes.add(Class.forName(packageName + '.'+ className));
                                         } catch (ClassNotFoundException e) {
                                             // log
                                             // .error("添加用户自定义视图类错误 找不到此类的.class文件");
@@ -207,8 +199,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             // 如果是目录 则继续扫描
             if (file.isDirectory()) {
                 findAndAddClassesInPackageByFile(packageName + "."
-                                + file.getName(), file.getAbsolutePath(), recursive,
-                        classes);
+                                + file.getName(), file.getAbsolutePath(), recursive, classes);
             } else {
                 // 如果是java类文件 去掉后面的.class 只留下类名
                 String className = file.getName().substring(0,
@@ -245,10 +236,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         }
     }
 
-    protected void processAnnotationProperty(Class<?> clazz, BeanDefinition beanDefinition) {
+    public static void processAnnotationProperty(Class<?> clazz, BeanDefinition beanDefinition) {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String name = field.getName();
+            // 判断属性上是否存在Value的注解
             if (field.isAnnotationPresent(Value.class)) {
                 Value valueAnnotation = field.getAnnotation(Value.class);
                 String value = valueAnnotation.value();

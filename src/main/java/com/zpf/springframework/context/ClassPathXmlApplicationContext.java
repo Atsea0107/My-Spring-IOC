@@ -44,4 +44,13 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
         }
         return beanFactory;
     }
+
+    public void addNewBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception {
+        XmlBeanDefinitionReader.processAnnotationProperty(beanDefinition.getBeanClass(), beanDefinition);
+        beanFactory.registerBeanDefinition(name, beanDefinition);
+    }
+
+    public void refreshBeanFactory() throws Exception {
+        prepareBeanFactory((AbstractBeanFactory) beanFactory);
+    }
 }

@@ -13,8 +13,14 @@ import com.zpf.springframework.annotation.Value;
 public class HelloWorldServiceImpl implements HelloWorldService {
     @Value("hello, world, java")
     private String text;
+
     @Override
     public void saySomething() {
         System.out.println(text);
+    }
+
+    @Override
+    public String getString() {
+        return text;
     }
 }
