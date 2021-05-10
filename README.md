@@ -1,3 +1,3 @@
 # My-Spring-IOC
 
-该实现为annotation的注入
+该实现为springMVC
